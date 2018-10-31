@@ -15,7 +15,9 @@ jobs:
             git clone https://github.com/qxf2/bitcoin-info.git
             cd ./bitcoin-info/app
             #export app_path=`pwd`
-            export app_path=`pwd`>> ~/bashrc
+            #export app_path=`pwd`>> ~/bashrc
+            mkdir /var/app
+            ln -s `pwd` /var/app
             #export $app_path
       - run:
           name: Decrypt remote_credentials_enc.py using openssl
@@ -23,12 +25,10 @@ jobs:
             openssl aes-256-cbc -d -in ./conf/remote_credentials_enc.py -out ./conf/remote_credentials.py -pass env:KEY     
       - run:
           name: Run the API and Selenium tests only (Ignoring to run mobile test as we are not yet set to run mobile test on server)
-          command: |
-            env
-            echo $app_path   
+          command: |              
             #echo "path" > /home/circleci/project/bitcoin-info/app/           
             #py.test -s -k mobile -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial
-            #py.test -s -v -k mobile -N "/home/circleci/project/bitcoin-info/app" -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial --junitxml=test-reports/junit.xml --tb=native                      
+            py.test -s -v -k mobile -N "/var/app" -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial --junitxml=test-reports/junit.xml --tb=native                      
                       
 
       - store_artifacts:
