@@ -16,7 +16,7 @@ jobs:
             cd ./bitcoin-info/app
             export app_path=`pwd`
             echo $app_path
-            ls -a
+            ls -al
             #export $app_path
       - run:
           name: Decrypt remote_credentials_enc.py using openssl
