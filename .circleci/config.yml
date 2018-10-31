@@ -17,6 +17,7 @@ jobs:
             export app_path=`pwd`
             echo $app_path
             ls -al
+            chmod 777 *.apk
             #export $app_path
       - run:
           name: Decrypt remote_credentials_enc.py using openssl
