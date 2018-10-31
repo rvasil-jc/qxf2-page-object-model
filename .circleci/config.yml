@@ -12,13 +12,7 @@ jobs:
       - run:
           name: Mobile app
           command: |
-            git clone https://github.com/qxf2/bitcoin-info.git
-            cd ./bitcoin-info/app
-            #export app_path=`pwd`
-            #export app_path=`pwd`>> ~/bashrc
-            mkdir /var/app
-            ln -s `pwd` /var/app
-            #export $app_path
+            git clone https://github.com/qxf2/bitcoin-info.git            
       - run:
           name: Decrypt remote_credentials_enc.py using openssl
           command: |
@@ -28,7 +22,7 @@ jobs:
           command: |              
             #echo "path" > /home/circleci/project/bitcoin-info/app/           
             #py.test -s -k mobile -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial
-            py.test -s -v -k mobile -N "/var/app" -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial --junitxml=test-reports/junit.xml --tb=native                      
+            py.test -s -v -k mobile -N "/home/circleci/project/bitcoin-info/app" -M Y --remote_project_name Qxf2_Selenium_POM --remote_build_name Selenium_Tutorial --junitxml=test-reports/junit.xml --tb=native                      
                       
 
       - store_artifacts:
