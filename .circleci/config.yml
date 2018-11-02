@@ -14,7 +14,7 @@ jobs:
           command: |
             git clone https://github.com/qxf2/bitcoin-info.git
             #cd ./bitcoin-info/app
-            echo 'export app_path="/home/circleci/project/bitcoin-info/app:$app_path"' >> $BASH_ENV
+            echo 'export app_path="/home/circleci/project/bitcoin-info/app/:$app_path"' >> $BASH_ENV
             #export app_path=`pwd`>> ~/bashrc            
             #ln -s `pwd` /home/circleci/project
             #export $app_path
